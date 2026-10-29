@@ -1,0 +1,75 @@
+name: Release NightmareItems
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Set up Java 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+
+      - name: Detect build system
+        id: build
+        shell: bash
+        run: |
+          if [ -f pom.xml ]; then
+            echo "tool=maven" >> "$GITHUB_OUTPUT"
+          elif [ -f build.gradle ] || [ -f build.gradle.kts ]; then
+            echo "tool=gradle" >> "$GITHUB_OUTPUT"
+          else
+            echo "tool=none" >> "$GITHUB_OUTPUT"
+            exit 1
+          fi
+
+      - name: Build with Maven
+        if: steps.build.outputs.tool == 'maven'
+        run: mvn -B clean package
+
+      - name: Set up Gradle
+        if: steps.build.outputs.tool == 'gradle'
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.7'
+
+      - name: Build with Gradle
+        if: steps.build.outputs.tool == 'gradle'
+        run: ./gradlew --no-daemon clean build
+
+      - name: Find built JAR
+        id: jar
+        shell: bash
+        run: |
+          if [ -f pom.xml ]; then
+            JAR_PATH=$(find target -type f -name "*.jar" | head -n 1)
+          else
+            JAR_PATH=$(find build/libs -type f -name "*.jar" | head -n 1)
+          fi
+
+          if [ -z "$JAR_PATH" ]; then
+            echo "No JAR found"
+            exit 1
+          fi
+
+          echo "path=$JAR_PATH" >> "$GITHUB_OUTPUT"
+
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+          files: ${{ steps.jar.outputs.path }}
