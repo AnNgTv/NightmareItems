@@ -3,7 +3,7 @@ plugins {
 }
 
 group = 'fun.nightmare.tcyt'
-version = '1.0.0'
+version = providers.gradleProperty('releaseVersion').getOrElse('1.0.0')
 
 java {
     toolchain {
