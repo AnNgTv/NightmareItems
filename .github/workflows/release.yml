@@ -69,3 +69,4 @@ jobs:
           name: NightmareItems ${{ steps.version.outputs.tag }}
           generate_release_notes: true
           files: build/libs/*.jar
+          files: target/*.jar
