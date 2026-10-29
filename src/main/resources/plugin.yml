@@ -1,0 +1,15 @@
+name: NightmareItems
+version: '${version}'
+main: fun.nightmare.tcyt.NightmareItems
+api-version: '1.20'
+authors: [NightmareTCYT]
+description: Custom YAML items, skills, cooldowns and an in-game item browser.
+commands:
+  nitems:
+    description: NightmareItems main command
+    usage: /nitems <list|give|editor|reload>
+    aliases: [ni]
+permissions:
+  nightmareitems.admin:
+    description: Manage NightmareItems
+    default: op

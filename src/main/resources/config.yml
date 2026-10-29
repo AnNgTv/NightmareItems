@@ -1,0 +1,11 @@
+# NightmareItems - Paper 1.20.6
+# Edit item files in plugins/NightmareItems/items/
+settings:
+  gui-title: "&4&lNIGHTMARE ITEMS"
+  gui-size: 54
+  default-cooldown-seconds: 3
+messages:
+  prefix: "&8[&4NightmareItems&8] "
+  no-permission: "&cBạn không có quyền."
+  player-only: "&cLệnh này chỉ dùng trong game."
+  reloaded: "&aĐã tải lại cấu hình và item."

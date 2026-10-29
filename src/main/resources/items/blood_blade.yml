@@ -1,0 +1,26 @@
+# Sample item. Copy this file and change id/name/material/lore/skills.
+id: blood_blade
+material: DIAMOND_SWORD
+name: "&4&lHuyết Kiếm"
+lore:
+  - "&7Vũ khí của NIGHTMARE TCYT"
+  - "&cChuột phải: Huyết bạo"
+  - "&5Shift + chuột phải: Hắc khí"
+enchantments:
+  SHARPNESS: 4
+  UNBREAKING: 3
+unbreakable: false
+# Supported skill types: DAMAGE, POTION, LIGHTNING, HEAL
+skills:
+  right:
+    type: DAMAGE
+    amount: 8.0
+    cooldown: 5
+    message: "&cHuyết bạo!"
+  sneak_right:
+    type: POTION
+    effect: INCREASE_DAMAGE
+    duration: 5
+    amplifier: 1
+    cooldown: 12
+    message: "&5Hắc khí bao trùm cơ thể!"
