@@ -1,9 +1,7 @@
-# NightmareItems - Paper 1.20.6
-# Edit item files in plugins/NightmareItems/items/
+# NightmareItems v2 - Paper 1.20.6
 settings:
-  gui-title: "&4&lNIGHTMARE ITEMS"
-  gui-size: 54
   default-cooldown-seconds: 3
+  skill-range: 6.0
 messages:
   prefix: "&8[&4NightmareItems&8] "
   no-permission: "&cBạn không có quyền."

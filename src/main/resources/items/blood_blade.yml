@@ -1,26 +1,43 @@
-# Sample item. Copy this file and change id/name/material/lore/skills.
+# NIGHTMARE TCYT - sample item
 id: blood_blade
 material: DIAMOND_SWORD
 name: "&4&lHuyết Kiếm"
 lore:
   - "&7Vũ khí của NIGHTMARE TCYT"
-  - "&cChuột phải: Huyết bạo"
-  - "&5Shift + chuột phải: Hắc khí"
+  - "&cChuột phải: Huyết Trảm"
+  - "&5Shift + chuột phải: Hấp Huyết"
+  - "&dĐánh trúng: Huyết Ảnh"
 enchantments:
-  SHARPNESS: 4
-  UNBREAKING: 3
+  SHARPNESS: 8
+  UNBREAKING: 5
 unbreakable: false
-# Supported skill types: DAMAGE, POTION, LIGHTNING, HEAL
-skills:
-  right:
+custom-model-data: 0
+abilities:
+  blood_slash:
+    trigger: right
     type: DAMAGE
     amount: 8.0
     cooldown: 5
-    message: "&cHuyết bạo!"
-  sneak_right:
-    type: POTION
-    effect: INCREASE_DAMAGE
-    duration: 5
-    amplifier: 1
+    message: "&cHuyết Trảm!"
+  blood_drain:
+    trigger: sneak_right
+    type: HEAL
+    amount: 4.0
     cooldown: 12
-    message: "&5Hắc khí bao trùm cơ thể!"
+    message: "&5Hấp Huyết!"
+  blood_shadow:
+    trigger: on_hit
+    type: POTION
+    amount: 1.0
+    effect: INCREASE_DAMAGE
+    duration: 3
+    amplifier: 0
+    cooldown: 15
+upgrades:
+  max-level: 5
+  levels:
+    2:
+      exp-cost: 5
+      material: DIAMOND
+      material-amount: 1
+      damage-bonus: 1.0
